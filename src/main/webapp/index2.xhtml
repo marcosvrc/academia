@@ -9,22 +9,7 @@
 	<title>Incluir Cliente</title>
 </h:head>
 <h:form>
-	<p:growl id="messages"></p:growl>
-	<p:panelGrid columns="2">
-		<p:outputLabel value="Nome:"></p:outputLabel>
-		<p:inputText value="#{clienteMbean.cliente.nome}"></p:inputText>
-
-		<p:outputLabel value="Cpf:"></p:outputLabel>
-		<p:inputMask value="#{clienteMbean.cliente.cpf}" mask="999.999.999-99" />
-
-		<p:outputLabel value="Data de nascimento:"></p:outputLabel>
-		<p:calendar value="#{clienteMbean.cliente.dataNascimento}"
-			showOn="button" />
-
-		<p:outputLabel value="Email:"></p:outputLabel>
-		<p:inputText value="#{clienteMbean.cliente.email}"></p:inputText>
-	</p:panelGrid>
-
+	
 	<p:dataTable var="cliente" value="#{clienteMbean.listaClienteVO}">
 		<p:column headerText="Id">
 			<h:outputText value="#{cliente.id}" />
@@ -43,7 +28,5 @@
 		</p:column>
 	</p:dataTable>
 
-	<p:commandButton value="Salvar" action="#{clienteMbean.salvar}"
-		update="messages"></p:commandButton>
 </h:form>
 </html>

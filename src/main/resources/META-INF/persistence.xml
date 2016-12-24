@@ -4,17 +4,14 @@
 	version="2.0">
 	<!-- Will be referenced in Spring Context File -->
 	<persistence-unit name="jpa-persistence" transaction-type="RESOURCE_LOCAL">
-		
-		<class>com.journaldev.jpa.data.Employee</class>
+		<class>br.com.academia.entidade.Cliente</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/academia" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="desenv" />
-			
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.hbm2dll.auto" value="create" />
+	
 		</properties>
 	</persistence-unit>
 </persistence>
