@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import br.com.academia.dao.ProdutoDAO;
 import br.com.academia.entidade.Produto;
 
+@Repository
 public class ProdutoDAOImpl extends AbstractDAO implements ProdutoDAO{
 
 	@Override

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.academia.entidade.Cliente;
+import br.com.academia.entidade.Produto;
 import br.com.academia.vo.ClienteVO;
+import br.com.academia.vo.ProdutoVO;
 
 
 public class Converter {
@@ -22,6 +24,7 @@ public class Converter {
 	public static ClienteVO converterClienteParaVO(Cliente cliente){
 		ClienteVO clienteVo = new ClienteVO();
 		
+		clienteVo.setId(cliente.getId());
 		clienteVo.setNome(cliente.getNome());
 		clienteVo.setDataNascimento(cliente.getDataNascimento());
 		clienteVo.setEmail(cliente.getEmail());
@@ -41,6 +44,34 @@ public class Converter {
 		return listClienteVO;
 	}
 	
+	public static Produto converterVoParaProduto(ProdutoVO produtoVO){
+		Produto produto = new Produto();
+		produto.setId(produtoVO.getId());
+		produto.setDescricao(produtoVO.getDescricao());
+		produto.setValor(produtoVO.getValor());
+		return produto;
+	}
+	
+	public static ProdutoVO converterProdutoParaVO(Produto produto){
+		ProdutoVO produtoVO = new ProdutoVO();
+		
+		produtoVO.setId(produto.getId());
+		produtoVO.setDescricao(produto.getDescricao());
+		produtoVO.setValor(produto.getValor());
+		return produtoVO;
+	}
+	
+	public static List<ProdutoVO> converterListaProdutoParaListaVo(List<Produto> listaEntidade){
+		
+		List<ProdutoVO> listProdutoVO = new ArrayList<ProdutoVO>();
+		if(listaEntidade != null && !listaEntidade.isEmpty()){
+			for(Produto produto : listaEntidade){
+				ProdutoVO produtoVO = converterProdutoParaVO(produto);
+				listProdutoVO.add(produtoVO);
+			}
+		}
+		return listProdutoVO;
+	}
 	
 	
 }

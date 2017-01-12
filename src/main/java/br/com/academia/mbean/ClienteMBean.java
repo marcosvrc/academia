@@ -47,6 +47,7 @@ public class ClienteMBean {
 				new FacesMessage("O cliente "+this.cliente.getNome()+" foi gravado com sucesso!"));
 		
 		listaClienteVO = clienteService.listarTodos();
+		this.limparCampos();
 		return "";
 	}
 	/**
@@ -56,5 +57,12 @@ public class ClienteMBean {
 		return listaClienteVO;
 	}
 	
+	
+	private void limparCampos(){
+		this.cliente.setCpf(null);
+		this.cliente.setDataNascimento(null);
+		this.cliente.setEmail(null);
+		this.cliente.setNome(null);
+	}
 	
 }

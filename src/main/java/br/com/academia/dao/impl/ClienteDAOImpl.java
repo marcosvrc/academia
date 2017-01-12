@@ -8,7 +8,7 @@ import br.com.academia.dao.ClienteDAO;
 import br.com.academia.entidade.Cliente;
 import javax.persistence.Query;
 
-@Repository("employeeDao")
+@Repository
 public class ClienteDAOImpl extends AbstractDAO implements ClienteDAO{
 	
 	@Override
