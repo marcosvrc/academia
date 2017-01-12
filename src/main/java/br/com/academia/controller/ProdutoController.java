@@ -16,14 +16,14 @@ import br.com.academia.vo.ProdutoVO;
 
 @Controller("produtoMbean")
 @Scope("session")
-public class ProdutoMBean {
+public class ProdutoController {
 
 	private ProdutoService produtoService;
 	private List<ProdutoVO> listaProdutoVO;
 	private ProdutoVO produto = new ProdutoVO();
 
 	@Autowired
-	public ProdutoMBean(ProdutoService produtoService){
+	public ProdutoController(ProdutoService produtoService){
 		this.produtoService = produtoService;
 	}
 	

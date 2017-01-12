@@ -15,13 +15,13 @@ import br.com.academia.vo.ClienteVO;
 
 @Controller("clienteMbean")
 @Scope("session")
-public class ClienteMBean {
+public class ClienteController {
 
 	private ClienteService clienteService;
 	private List<ClienteVO> listaClienteVO;
 
 	@Autowired
-	public ClienteMBean(ClienteService clienteService){
+	public ClienteController(ClienteService clienteService){
 		this.clienteService = clienteService;
 	}
 	
