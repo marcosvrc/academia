@@ -4,24 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="cliente")
-public class Cliente {
-	
-	@Id
-	@Column(name="ID_CLIENTE")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
-	@Column(name="NOME")
-	private String nome;
+public class Cliente extends Pessoa{
 	
 	@Column(name="CPF")
 	private String cpf;
@@ -33,34 +22,7 @@ public class Cliente {
 	@Column(name="EMAIL")
 	private String email;
 
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the nome
-	 */
-	public String getNome() {
-		return nome;
-	}
-
-	/**
-	 * @param nome the nome to set
-	 */
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
+	
 	/**
 	 * @return the cpf
 	 */
