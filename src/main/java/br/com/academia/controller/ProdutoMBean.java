@@ -1,4 +1,4 @@
-package br.com.academia.mbean;
+package br.com.academia.controller;
 
 import java.util.List;
 

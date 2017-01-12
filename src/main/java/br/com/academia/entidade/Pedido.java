@@ -26,6 +26,7 @@ public class Pedido {
 	private Cliente cliente;
 
 	@OneToMany
+	@JoinColumn(name="ID_PRODUTO")
 	private List<Produto> listaProduto;
 	public long getId() {
 		return id;
