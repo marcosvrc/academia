@@ -7,6 +7,7 @@
 		<class>br.com.academia.entidade.Produto</class>
 		<class>br.com.academia.entidade.Cliente</class>
 		<class>br.com.academia.entidade.Pedido</class>
+		<class>br.com.academia.entidade.Categoria</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/academia" />

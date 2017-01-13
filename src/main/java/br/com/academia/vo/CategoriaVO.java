@@ -1,13 +1,9 @@
 package br.com.academia.vo;
 
-import java.math.BigDecimal;
-
-public class ProdutoVO {
-
+public class CategoriaVO {
+	
 	private long id;
 	private String descricao;
-	private BigDecimal valor;
-	
 	public long getId() {
 		return id;
 	}
@@ -20,13 +16,7 @@ public class ProdutoVO {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public BigDecimal getValor() {
-		return valor;
-	}
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
 	
 	
-	
+
 }

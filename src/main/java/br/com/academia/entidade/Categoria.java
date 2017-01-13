@@ -1,7 +1,5 @@
 package br.com.academia.entidade;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,20 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PROD")
-public class Produto {
-
+@Table(name="categ")
+public class Categoria {
+	
+	@Column(name="ID")
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
 	private long id;
 	
 	@Column(name="DESCRICAO", length=40)
 	private String descricao;
-
-	@Column(name="VALOR")
-	private BigDecimal valor;
-	
 	
 	public long getId() {
 		return id;
@@ -37,11 +31,7 @@ public class Produto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public BigDecimal getValor() {
-		return valor;
-	}
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
 	
+	
+
 }

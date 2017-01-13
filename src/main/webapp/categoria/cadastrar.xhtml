@@ -6,22 +6,17 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<script name="jquery/jquery.js" library="primefaces"></script>
-	<title>Incluir Produto</title>
+	<title>Incluir Categoria</title>
 </h:head>
 <h:form>
 	<p:growl id="messages"></p:growl>
 	<p:panelGrid columns="2">
 		<p:outputLabel value="Descricao"></p:outputLabel>
-		<p:inputText value="#{produtoMbean.produto.descricao}"></p:inputText>
-
-		<p:outputLabel value="Valor:"></p:outputLabel>
-		<p:inputMask value="#{produtoMbean.produto.valor}" />
-
+		<p:inputText value="#{categoriaMbean.categ.descricao}"></p:inputText>
 	</p:panelGrid>
-
-	<p:commandButton value="Salvar" action="#{produtoMbean.salvar}"
-		update="messages" />
-
-
+	
+	<p:commandButton value="Salvar" action="#{categoriaMbean.salvar}" update="messages"></p:commandButton>
+		
+		
 </h:form>
 </html>

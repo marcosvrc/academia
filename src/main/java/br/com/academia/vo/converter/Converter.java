@@ -3,8 +3,10 @@ package br.com.academia.vo.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.academia.entidade.Categoria;
 import br.com.academia.entidade.Cliente;
 import br.com.academia.entidade.Produto;
+import br.com.academia.vo.CategoriaVO;
 import br.com.academia.vo.ClienteVO;
 import br.com.academia.vo.ProdutoVO;
 
@@ -71,6 +73,32 @@ public class Converter {
 			}
 		}
 		return listProdutoVO;
+	}
+	
+	public static Categoria converterVoParaEntidade(CategoriaVO vo){
+		Categoria entidade = new Categoria();
+		entidade.setId(vo.getId());
+		entidade.setDescricao(vo.getDescricao());
+		return entidade;
+	}
+	
+	public static CategoriaVO converterEntidadeParaVO(Categoria entidade){
+		CategoriaVO vo = new CategoriaVO();
+		vo.setId(entidade.getId());
+		vo.setDescricao(entidade.getDescricao());
+		return vo;
+	}
+	
+public static List<CategoriaVO> converterListaCategoriaParaListaVo(List<Categoria> listaEntidade){
+		
+		List<CategoriaVO> listCategoriaVO = new ArrayList<CategoriaVO>();
+		if(listaEntidade != null && !listaEntidade.isEmpty()){
+			for(Categoria categoria : listaEntidade){
+				CategoriaVO categoriaVO = converterEntidadeParaVO(categoria);
+				listCategoriaVO.add(categoriaVO);
+			}
+		}
+		return listCategoriaVO;
 	}
 	
 	
