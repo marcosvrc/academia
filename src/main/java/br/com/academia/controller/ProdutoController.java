@@ -35,7 +35,11 @@ public class ProdutoController {
 	public void setProduto(ProdutoVO produto) {
 		this.produto = produto;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String salvar() {
 		// Calling Business Service
 		produtoService.salvar(produto);
@@ -45,9 +49,7 @@ public class ProdutoController {
 		this.limparCampos();
 		return "";
 	}
-	/**
-	 * @return the listaClienteVO
-	 */
+	
 	public void getListaProdutoVO() {
 		produtoService.listarTodosProdutos();
 	}
