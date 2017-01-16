@@ -9,7 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="cliente")
+@Table(name="CLIENTE")
 public class Cliente extends Pessoa{
 	
 	@Column(name="CPF")

@@ -2,14 +2,20 @@ package br.com.academia.service;
 
 import java.util.List;
 
-import br.com.academia.entidade.Produto;
+import br.com.academia.exception.BusinessException;
 import br.com.academia.vo.ProdutoVO;
 
+/**
+ * Interface de negócio da entidade Produto
+ * @author MARCOS
+ *
+ */
 public interface ProdutoService {
 
-	public void salvar(ProdutoVO produto);
-	public void excluir(long id);
+	public void salvarProduto(ProdutoVO produtoVO) throws BusinessException;
+	public void excluirProduto(long id);
+	public void alterarProduto(ProdutoVO produtoVO);
 	public List<ProdutoVO> listarTodosProdutos();
-	public Produto consultarProdutoPorId(long id);
+	public ProdutoVO consultarProdutoPorId(long id);
 	
 }

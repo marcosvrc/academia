@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PROD")
+@Table(name="PRODUTO")
 public class Produto {
 
 	@Id
@@ -21,8 +23,12 @@ public class Produto {
 	@Column(name="DESCRICAO", length=40)
 	private String descricao;
 
-	@Column(name="VALOR")
-	private BigDecimal valor;
+	@Column(name="VALOR_UNITARIO")
+	private BigDecimal valorUnitario;
+	
+	@OneToOne
+	@JoinColumn(name="ID_CATEGORIA")
+	private Categoria categoria;
 	
 	
 	public long getId() {
@@ -37,11 +43,20 @@ public class Produto {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public BigDecimal getValor() {
-		return valor;
+	public BigDecimal getValorUnitario() {
+		return valorUnitario;
 	}
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setValorUnitario(BigDecimal valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
+	
+	
 	
 }

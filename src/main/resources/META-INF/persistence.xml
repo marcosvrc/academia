@@ -8,15 +8,16 @@
 		<class>br.com.academia.entidade.Cliente</class>
 		<class>br.com.academia.entidade.Pedido</class>
 		<class>br.com.academia.entidade.Categoria</class>
+		<class>br.com.academia.entidade.ItemPedido</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/academia" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="admin" />
+			<property name="javax.persistence.jdbc.password" value="desenv" />
 			
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-            <property name="hibernate.hbm2ddi.auto" value="create" />
+            <property name="hibernate.hbm2ddi.auto" value="create-update" />
             <property name = "hibernate.show_sql" value = "true" />
             <property name = "hibernate.format_sql" value = "true" />
 	

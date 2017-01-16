@@ -13,35 +13,40 @@ import br.com.academia.entidade.Produto;
 public class ProdutoDAOImpl extends AbstractDAO implements ProdutoDAO{
 
 	@Override
-	public void salvar(Produto produto) {
-		super.getEntityManager().persist(produto);
+	public void salvarProduto(Produto produto) {
+		this.getEntityManager().persist(produto);
 		
 	}
 
 	@Override
-	public void excluir(long id) {
-		Produto produto = this.consultarPorId(id);
+	public void excluirProduto(long id) {
+		Produto produto = this.getEntityManager().find(Produto.class, id);
 		this.getEntityManager().remove(produto);
 		
 	}
 
 	@Override
-	public void alterar(Produto produto) {
+	public void alterarProduto(Produto produto) {
 		this.getEntityManager().merge(produto);
 		
 	}
 
 	@Override
-	public Produto consultarPorId(long id) {
-		return super.getEntityManager().find(Produto.class, id);
+	public Produto consultarProdutoPorId(long id) {
+		Query query = super.getEntityManager().createQuery("select p from Produto p where p.id = :id");
+		Produto produtoConsultado = (Produto)query.getSingleResult();
+		getEntityManager().close();
+		return produtoConsultado;
 	}
 
 	@Override
-	public List<Produto> consultarTodos() {
-		Query query = super.getEntityManager().createQuery("select c from Produto c");
-		List<Produto> listarProduto = query.getResultList();
+	public List<Produto> consultarTodosPodutos() {
+		Query query = super.getEntityManager().createQuery("select p from Produto p");
+		List<Produto> listaProduto = query.getResultList();
 		getEntityManager().close();
-		return listarProduto;
+		return listaProduto;
 	}
+
+	
 
 }

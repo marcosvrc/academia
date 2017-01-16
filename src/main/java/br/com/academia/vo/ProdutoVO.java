@@ -7,6 +7,7 @@ public class ProdutoVO {
 	private long id;
 	private String descricao;
 	private BigDecimal valor;
+	private CategoriaVO categoriaVO;
 	
 	public long getId() {
 		return id;
@@ -26,6 +27,14 @@ public class ProdutoVO {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
+	public CategoriaVO getCategoriaVO() {
+		return categoriaVO;
+	}
+	public void setCategoriaVO(CategoriaVO categoriaVO) {
+		this.categoriaVO = categoriaVO;
+	}
+	
+	
 	
 	
 	

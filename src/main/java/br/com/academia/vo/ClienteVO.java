@@ -10,7 +10,6 @@ public class ClienteVO implements Serializable{
 	private long id;
 	private String nome;
 	private String cpf;
-	private String idade;
 	private Date dataNascimento;
 	private String email;
 	
@@ -32,12 +31,7 @@ public class ClienteVO implements Serializable{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public String getIdade() {
-		return idade;
-	}
-	public void setIdade(String idade) {
-		this.idade = idade;
-	}
+	
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}

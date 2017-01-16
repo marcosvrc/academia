@@ -6,10 +6,10 @@ import br.com.academia.entidade.Produto;
 
 public interface ProdutoDAO {
 	
-	public void salvar(Produto produto);
-	public void excluir(long id);
-	public void alterar(Produto produto);
-	public Produto consultarPorId(long id);
-	public List<Produto> consultarTodos();
+	public void salvarProduto(Produto produto);
+	public void excluirProduto(long id);
+	public void alterarProduto(Produto produto);
+	public Produto consultarProdutoPorId(long id);
+	public List<Produto> consultarTodosPodutos();
 
 }

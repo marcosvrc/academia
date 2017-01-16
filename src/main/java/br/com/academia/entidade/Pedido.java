@@ -1,5 +1,6 @@
 package br.com.academia.entidade;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,9 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="PED")
+@Table(name="PEDIDO")
 public class Pedido {
 	
 	@Id
@@ -26,8 +29,12 @@ public class Pedido {
 	private Cliente cliente;
 
 	@OneToMany
-	@JoinColumn(name="ID_PRODUTO")
-	private List<Produto> listaProduto;
+	private List<ItemPedido> listaItemProduto;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataPedido;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -40,11 +47,17 @@ public class Pedido {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	public List<Produto> getListaProduto() {
-		return listaProduto;
+	public List<ItemPedido> getListaItemProduto() {
+		return listaItemProduto;
 	}
-	public void setListaProduto(List<Produto> listaProduto) {
-		this.listaProduto = listaProduto;
+	public void setListaItemProduto(List<ItemPedido> listaItemProduto) {
+		this.listaItemProduto = listaItemProduto;
+	}
+	public Date getDataPedido() {
+		return dataPedido;
+	}
+	public void setDataPedido(Date dataPedido) {
+		this.dataPedido = dataPedido;
 	}
 	
 	
