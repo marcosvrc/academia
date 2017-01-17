@@ -1,5 +1,6 @@
 package br.com.academia.controller;
 
+import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +11,7 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import antlr.StringUtils;
 import br.com.academia.service.CategoriaService;
 import br.com.academia.vo.CategoriaVO;
 
@@ -38,7 +40,7 @@ public class CategoriaController extends AbstractController{
 		
 		FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Categoria gravada com sucesso!"));
-		
+		limparCampos();
 		return "";
 	}
 	
@@ -73,6 +75,10 @@ public class CategoriaController extends AbstractController{
 		return TELA_LISTAR_TODOS;
 	}
 	
+	private void limparCampos(){
+		this.categ.setDescricao(null);
+		this.categ.setId(0);
+	}
 	
 	/** MÉTODOS GET E SET**/
 	public String chamarTelaCadastro(){

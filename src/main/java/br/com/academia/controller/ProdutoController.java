@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.com.academia.exception.BusinessException;
 import br.com.academia.service.CategoriaService;
 import br.com.academia.service.ProdutoService;
+import br.com.academia.service.impl.ProdutoServiceImpl;
 import br.com.academia.vo.CategoriaVO;
 import br.com.academia.vo.ProdutoVO;
 
@@ -27,6 +28,7 @@ public class ProdutoController extends AbstractController{
 	
 	@Autowired
 	private ProdutoService produtoService;
+	
 	
 	@Autowired
 	private CategoriaService categoriaService;
