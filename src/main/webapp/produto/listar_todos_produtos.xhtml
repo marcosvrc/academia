@@ -16,29 +16,68 @@
 				rows="7" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
                                                  {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="7,14,21" style="width:98%;">
+				rowsPerPageTemplate="7,14,21" style="width:98%;" editable="true">
+
+				<p:ajax event="rowEdit" listener="#{produtoMbean.alterar}" />
+				<p:ajax event="rowEditCancel"
+					listener="#{produtoMbean.cancelarEdicao}" />
+
 				<p:column headerText="Id">
 					<h:outputText value="#{prod.id}" />
 				</p:column>
 
 				<p:column headerText="Descricao">
-					<h:outputText value="#{prod.descricao}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prod.descricao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="inputDescricao" value="#{prod.descricao}"
+								style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Categoria">
-					<h:outputText value="#{prod.categoriaVO.descricao}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prod.categoriaVO.descricao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="categoria"
+								value="#{prod.categoriaVO.id}" style="width:125px">
+								<f:selectItem itemLabel="Selecione" itemValue="0" />
+								<f:selectItems value="#{produtoMbean.listaCategoriaVO}"
+									var="categ" itemLabel="#{categ.descricao}"
+									itemValue="#{categ.id}" />
+							</p:selectOneMenu>
+
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Valor Unitário">
-					<h:outputText value="#{prod.valor}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{prod.valor}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputNumber id="inputValor" value="#{prod.valor}"
+								style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Ações">
+				<p:column headerText="Excluir">
 
 					<p:commandButton icon="ui-icon-trash" title="Excluir Registro"
 						ajax="true" actionListener="#{produtoMbean.excluir(prod)}"
 						update="@form" />
 
+				</p:column>
+
+				<p:column headerText="Alterar">
+					<p:rowEditor />
 				</p:column>
 
 			</p:dataTable>

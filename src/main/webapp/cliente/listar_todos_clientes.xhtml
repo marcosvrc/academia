@@ -5,63 +5,92 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:decorate template="/index.xhtml">
+<ui:decorate template="/index.xhtml">
 
-		<ui:define name="centro">
-			<h:form>
-				
-				<p:messages id="messages" showDetail="true" autoUpdate="true"
+	<ui:define name="centro">
+		<h:form>
+
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
 				closable="true" />
-				
-				<p:dataTable var="cliente" value="#{clienteMbean.listaClienteVO}" 
-					rows="7"
-						 paginator="true"
-						 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+
+			<p:dataTable var="cliente" value="#{clienteMbean.listaClienteVO}"
+				rows="7" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
                                                  {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                                 rowsPerPageTemplate="7,14,21"
-                                                 style="width:98%;"> 
-					
-					<p:column headerText="Id">
-						<h:outputText value="#{cliente.id}" />
-					</p:column>
-					
-					<p:column headerText="Nome">
-						<h:outputText value="#{cliente.nome}"/>
-					</p:column>
-					
-					<p:column headerText="CPF">
-						<h:outputText value="#{cliente.cpf}" />
-					</p:column>
-			
-					<p:column headerText="Data Nascimento">
-						<h:outputText value="#{cliente.dataNascimento}" >
-							<f:convertDateTime pattern="dd-MM-yyyy"/>
-						</h:outputText>
-					</p:column>
-			
-					<p:column headerText="Email">
-						<h:outputText value="#{cliente.email}" />
-					</p:column>
-					
-					<p:column headerText="Alterar">
-						<h:outputText value="#{cliente.email}" />
-					</p:column>
-					
-					<p:column headerText="Excluir">
-						<h:outputText value="#{cliente.email}" />
-					</p:column>
-					
-					<p:column headerText="Ações">
+				rowsPerPageTemplate="7,14,21" style="width:98%;" editable="true">
+
+				<p:ajax event="rowEdit" listener="#{clienteMbean.alterar}" />
+				<p:ajax event="rowEditCancel"
+					listener="#{clienteMbean.cancelarEdicao}" />
+
+				<p:column headerText="Id">
+					<h:outputText value="#{cliente.id}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cliente.nome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="inputNome" value="#{cliente.nome}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="CPF">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cliente.cpf}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask id="inputCpf" value="#{cliente.cpf}"
+								mask="999.999.999-99" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Data de Nascimento">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cliente.dataNascimento}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar id="inputDtNascimento"
+								value="#{cliente.dataNascimento}" pattern="dd-MM-yyyy"
+								mask="true" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Email">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cliente.email}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText id="inputEmail" value="#{cliente.email}" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				
+				<p:column headerText="Tem Desconto?">
+					<h:outputText value="#{cliente.descricaoTemDesconto}"/>
+				</p:column>
+
+				<p:column headerText="Excluir">
 
 					<p:commandButton icon="ui-icon-trash" title="Excluir Registro"
 						ajax="true" actionListener="#{clienteMbean.excluir(cliente)}"
 						update="@form" />
-
 				</p:column>
-					
-				</p:dataTable>
-			
-			</h:form>
-		</ui:define>
-	</ui:decorate>
+				
+				<p:column headerText="Alterar">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:decorate>
 </html>

@@ -21,6 +21,9 @@ public class Cliente extends Pessoa{
 	
 	@Column(name="EMAIL")
 	private String email;
+	
+	@Column(name="FLAG_DESCONTO")
+	private boolean temDesconto;
 
 	
 	/**
@@ -64,6 +67,16 @@ public class Cliente extends Pessoa{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public boolean isTemDesconto() {
+		return temDesconto;
+	}
+
+	public void setTemDesconto(boolean temDesconto) {
+		this.temDesconto = temDesconto;
+	}
+
+	
 
 	
 	

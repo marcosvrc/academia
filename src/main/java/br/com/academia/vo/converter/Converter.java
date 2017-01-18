@@ -31,10 +31,12 @@ public class Converter {
 	public static Cliente converterVoParaCliente(ClienteVO clienteVO){
 		Cliente cliente = new Cliente();
 		
+		cliente.setId(clienteVO.getId());
 		cliente.setNome(clienteVO.getNome());
 		cliente.setDataNascimento(clienteVO.getDataNascimento());
 		cliente.setEmail(clienteVO.getEmail());
 		cliente.setCpf(clienteVO.getCpf());
+		cliente.setTemDesconto(clienteVO.getTemDesconto());
 		return cliente;
 	}
 	
@@ -51,6 +53,7 @@ public class Converter {
 		clienteVo.setDataNascimento(cliente.getDataNascimento());
 		clienteVo.setEmail(cliente.getEmail());
 		clienteVo.setCpf(cliente.getCpf());
+		clienteVo.setTemDesconto(cliente.isTemDesconto());
 		return clienteVo;
 	}
 	

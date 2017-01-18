@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.academia.exception.BusinessException;
@@ -17,6 +18,7 @@ import br.com.academia.service.CategoriaService;
 import br.com.academia.service.ProdutoService;
 import br.com.academia.service.impl.ProdutoServiceImpl;
 import br.com.academia.vo.CategoriaVO;
+import br.com.academia.vo.ClienteVO;
 import br.com.academia.vo.ProdutoVO;
 
 @ManagedBean(name = "produtoMbean")
@@ -89,11 +91,19 @@ public class ProdutoController extends AbstractController{
 		return "";
 	}
 	
-	public String chamarTelaAlterar(){
-		
-		
-		
-		return TELA_CADASTRAR_PRODUTO;
+	public void alterar(RowEditEvent event) {
+
+		ProdutoVO produtoVOAlterado = ((ProdutoVO) event.getObject());
+		produtoService.alterarProduto(produtoVOAlterado);
+
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Produto alterado com sucesso!"));
+
+	}
+
+	public void cancelarEdicao(RowEditEvent event) {
+		FacesMessage msg = new FacesMessage("Edição Cancelada!", ((ProdutoVO) event.getObject()).getDescricao());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 	
 	private void limparCampos(){

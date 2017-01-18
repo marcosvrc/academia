@@ -12,6 +12,8 @@ public class ClienteVO implements Serializable{
 	private String cpf;
 	private Date dataNascimento;
 	private String email;
+	private boolean temDesconto;
+	private String descricaoTemDesconto;
 	
 	public long getId() {
 		return id;
@@ -43,6 +45,21 @@ public class ClienteVO implements Serializable{
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public boolean getTemDesconto() {
+		return temDesconto;
+	}
+	public void setTemDesconto(boolean temDesconto) {
+		this.temDesconto = temDesconto;
+	}
+	public String getDescricaoTemDesconto() {
+		String label;
+		if(this.getTemDesconto()){
+			label = "Sim";
+		}else{
+			label = "Não";
+		}
+		return label;
 	}
 	
 	

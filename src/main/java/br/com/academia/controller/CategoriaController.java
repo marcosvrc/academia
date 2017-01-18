@@ -1,6 +1,5 @@
 package br.com.academia.controller;
 
-import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,9 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import antlr.StringUtils;
 import br.com.academia.service.CategoriaService;
 import br.com.academia.vo.CategoriaVO;
 
@@ -44,14 +43,20 @@ public class CategoriaController extends AbstractController{
 		return "";
 	}
 	
-	public String alterar() {
-
-		categoriaService.alterarCategoria(categ);
+	public void alterar(RowEditEvent event) {
+		
+		CategoriaVO categoriaVOAlterada = ((CategoriaVO) event.getObject());
+		categoriaService.alterarCategoria(categoriaVOAlterada);
 		
 		FacesContext.getCurrentInstance().addMessage(null,
 						new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Categoria alterada com sucesso!"));
 		
-		return "";
+		
+	}
+	
+	public void cancelarEdicao(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edição Cancelada!", ((CategoriaVO) event.getObject()).getDescricao());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 	
 	public String excluir(CategoriaVO categoriaVO){
@@ -100,5 +105,4 @@ public class CategoriaController extends AbstractController{
 	public void setListaCategoriaVO(List<CategoriaVO> listaCategoriaVO) {
 		this.listaCategoriaVO = listaCategoriaVO;
 	}
-	
 }

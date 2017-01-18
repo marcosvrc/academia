@@ -8,18 +8,20 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.academia.service.ClienteService;
+import br.com.academia.vo.CategoriaVO;
 import br.com.academia.vo.ClienteVO;
 
 @ManagedBean(name = "clienteMbean")
 @SessionScoped
-public class ClienteController extends AbstractController{
+public class ClienteController extends AbstractController {
 
 	public static String TELA_LISTA_TODOS = "/cliente/listar_todos_clientes.xhtml";
 	public static String TELA_CADASTRAR_CLIENTE = "/cliente/cadastrar_cliente.xhtml";
-	
+
 	@Autowired
 	private ClienteService clienteService;
 
@@ -45,19 +47,34 @@ public class ClienteController extends AbstractController{
 		clienteService.salvarCliente(cliente);
 		// Add message
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Cliente gravado com sucesso!"));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cliente gravado com sucesso!"));
 
 		this.limparCampos();
 		return "";
 	}
-	
-	public String excluir(ClienteVO clienteVO){
-		if(clienteVO != null && clienteVO.getId() != 0){
-			this.clienteService.excluirCliente(clienteVO.getId());			
+
+	public void alterar(RowEditEvent event) {
+
+		ClienteVO clienteVOAlterado = ((ClienteVO) event.getObject());
+		clienteService.alterarCliente(clienteVOAlterado);
+
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cliente alterado com sucesso!"));
+
+	}
+
+	public void cancelarEdicao(RowEditEvent event) {
+		FacesMessage msg = new FacesMessage("Edição Cancelada!", ((ClienteVO) event.getObject()).getNome());
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
+	public String excluir(ClienteVO clienteVO) {
+		if (clienteVO != null && clienteVO.getId() != 0) {
+			this.clienteService.excluirCliente(clienteVO.getId());
 		}
 		this.listaClienteVO = clienteService.listarTodosClientes();
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO,null,"Cliente excluido com sucesso!"));
+				new FacesMessage(FacesMessage.SEVERITY_INFO, null, "Cliente excluido com sucesso!"));
 		return "";
 	}
 
@@ -74,13 +91,13 @@ public class ClienteController extends AbstractController{
 		this.getCliente().setEmail(null);
 		this.getCliente().setNome(null);
 	}
-	
-	public String chamarTelaListarTodosClientes(){
+
+	public String chamarTelaListarTodosClientes() {
 		listaClienteVO = clienteService.listarTodosClientes();
 		return TELA_LISTA_TODOS;
 	}
-	
-	public String chamarTelaCadastro(){
+
+	public String chamarTelaCadastro() {
 		return TELA_CADASTRAR_CLIENTE;
 	}
 
