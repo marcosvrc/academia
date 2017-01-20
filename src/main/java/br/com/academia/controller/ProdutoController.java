@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
@@ -16,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.com.academia.exception.BusinessException;
 import br.com.academia.service.CategoriaService;
 import br.com.academia.service.ProdutoService;
-import br.com.academia.service.impl.ProdutoServiceImpl;
 import br.com.academia.vo.CategoriaVO;
-import br.com.academia.vo.ClienteVO;
 import br.com.academia.vo.ProdutoVO;
 
 @ManagedBean(name = "produtoMbean")
@@ -31,12 +28,12 @@ public class ProdutoController extends AbstractController{
 	@Autowired
 	private ProdutoService produtoService;
 	
-	
 	@Autowired
 	private CategoriaService categoriaService;
 	
 	private List<ProdutoVO> listaExclusao = new ArrayList<ProdutoVO>();
 	private List<CategoriaVO> listaCategoriaVO;
+	private List<ProdutoVO> listaProdutoFiltrado;
 	private List<ProdutoVO> listaProdutoVO;
 	private ProdutoVO produto = new ProdutoVO();
 	private CategoriaVO categoriaVO = new CategoriaVO();
@@ -143,6 +140,22 @@ public class ProdutoController extends AbstractController{
 
 	public void setCategoriaVO(CategoriaVO categoriaVO) {
 		this.categoriaVO = categoriaVO;
+	}
+
+	public List<ProdutoVO> getListaExclusao() {
+		return listaExclusao;
+	}
+
+	public void setListaExclusao(List<ProdutoVO> listaExclusao) {
+		this.listaExclusao = listaExclusao;
+	}
+
+	public List<ProdutoVO> getListaProdutoFiltrado() {
+		return listaProdutoFiltrado;
+	}
+
+	public void setListaProdutoFiltrado(List<ProdutoVO> listaProdutoFiltrado) {
+		this.listaProdutoFiltrado = listaProdutoFiltrado;
 	}
 	
 }

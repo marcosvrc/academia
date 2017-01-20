@@ -26,13 +26,13 @@ public class ClienteController extends AbstractController {
 	private ClienteService clienteService;
 
 	private List<ClienteVO> listaClienteVO;
+	private ClienteVO cliente = new ClienteVO();
+	private List<ClienteVO> listaFiltrada;
 
 	@PostConstruct
 	private void init() {
 		super.getConfigSpring();
 	}
-
-	private ClienteVO cliente = new ClienteVO();
 
 	public ClienteVO getCliente() {
 		return cliente;
@@ -40,6 +40,16 @@ public class ClienteController extends AbstractController {
 
 	public void setCliente(ClienteVO employee) {
 		this.cliente = cliente;
+	}
+	
+	
+
+	public List<ClienteVO> getListaFiltrada() {
+		return listaFiltrada;
+	}
+
+	public void setListaFiltrada(List<ClienteVO> listaFiltrada) {
+		this.listaFiltrada = listaFiltrada;
 	}
 
 	public String salvar() {

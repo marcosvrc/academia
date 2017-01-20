@@ -5,7 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:decorate template="/index.xhtml">
+<ui:decorate template="/index_completo.xhtml">
 
 	<ui:define name="centro">
 		<h:form>
@@ -13,21 +13,40 @@
 			<p:messages id="messages" showDetail="true" autoUpdate="true"
 				closable="true" />
 
-			<p:dataTable var="cliente" value="#{clienteMbean.listaClienteVO}"
+			<p:dataTable var="cliente" value="#{clienteMbean.listaClienteVO}" id="listCliente"
 				rows="7" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
                                                  {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="7,14,21" style="width:98%;" editable="true">
+				rowsPerPageTemplate="7,14,21" style="width:98%;" editable="true"
+				widgetVar="clienteTable" rowKey="#{cliente.id}"
+				emptyMessage="Nenhum dados para ser exibido"
+				filteredValue="#{clienteMbean.listaFiltrada}">
+
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Pesquisar Todos Campos:" />
+						<p:inputText id="globalFilter"
+							onkeyup="PF('clienteTable').filter()" style="width:150px"
+							placeholder="Digite a palavra" />
+					</p:outputPanel>
+
+					<p:commandButton id="toggler" type="button" value="Colunas"
+						style="float:right" icon="ui-icon-calculator" />
+					<p:columnToggler datasource="listCliente" trigger="toggler" />
+
+				</f:facet>
 
 				<p:ajax event="rowEdit" listener="#{clienteMbean.alterar}" />
 				<p:ajax event="rowEditCancel"
 					listener="#{clienteMbean.cancelarEdicao}" />
 
-				<p:column headerText="Id">
+				<p:column headerText="Id" filterBy="#{cliente.id}"
+					sortBy="#{cliente.id}" filterMatchMode="startsWith">
 					<h:outputText value="#{cliente.id}" />
 				</p:column>
 
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" sortBy="#{cliente.nome}"
+					filterBy="#{cliente.nome}" filterMatchMode="startsWith">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{cliente.nome}" />
@@ -38,7 +57,8 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="CPF">
+				<p:column headerText="CPF" filterBy="#{cliente.cpf}"
+					sortBy="#{cliente.cpf}" filterMatchMode="startsWith">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{cliente.cpf}" />
@@ -73,9 +93,18 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				
+
 				<p:column headerText="Tem Desconto?">
-					<h:outputText value="#{cliente.descricaoTemDesconto}"/>
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{cliente.descricaoTemDesconto}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputSwitch value="#{clienteMbean.cliente.temDesconto}"
+								onLabel="Sim" offLabel="Não" style="margin-bottom:10px"
+								cellpadding="5" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Excluir">
@@ -84,7 +113,7 @@
 						ajax="true" actionListener="#{clienteMbean.excluir(cliente)}"
 						update="@form" />
 				</p:column>
-				
+
 				<p:column headerText="Alterar">
 					<p:rowEditor />
 				</p:column>

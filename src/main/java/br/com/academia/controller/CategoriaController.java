@@ -25,6 +25,7 @@ public class CategoriaController extends AbstractController{
 	@Autowired
 	private CategoriaService categoriaService;
 	private List<CategoriaVO> listaCategoriaVO;
+	private List<CategoriaVO> listaCategoriaFiltrada;
 	private CategoriaVO categ = new CategoriaVO();
 
 	@PostConstruct
@@ -105,4 +106,13 @@ public class CategoriaController extends AbstractController{
 	public void setListaCategoriaVO(List<CategoriaVO> listaCategoriaVO) {
 		this.listaCategoriaVO = listaCategoriaVO;
 	}
+
+	public List<CategoriaVO> getListaCategoriaFiltrada() {
+		return listaCategoriaFiltrada;
+	}
+
+	public void setListaCategoriaFiltrada(List<CategoriaVO> listaCategoriaFiltrada) {
+		this.listaCategoriaFiltrada = listaCategoriaFiltrada;
+	}
+	
 }

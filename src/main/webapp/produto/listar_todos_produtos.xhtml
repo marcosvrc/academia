@@ -5,7 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:decorate template="/index.xhtml">
+<ui:decorate template="/index_completo.xhtml">
 	<ui:define name="centro">
 		<h:form>
 
@@ -13,20 +13,37 @@
 				closable="true" />
 
 			<p:dataTable var="prod" value="#{produtoMbean.listaProdutoVO}"
-				rows="7" paginator="true"
+				rows="7" paginator="true" id="listProd"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
                                                  {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="7,14,21" style="width:98%;" editable="true">
+				rowsPerPageTemplate="7,14,21" style="width:98%;" editable="true"
+				widgetVar="prodTable" rowKey="#{prod.id}"
+				emptyMessage="Não há produtos para serem exibidos!"
+				filteredValue="#{produtoMbean.listaProdutoFiltrado}">
+
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Pesquisar todos os campos:" />
+						<p:inputText id="globalFilter" onkeyup="PF('prodTable').filter()"
+							style="width:150px" placeholder="Digita a palavra" />
+					</p:outputPanel>
+					
+					<p:commandButton id="toggler" type="button" value="Colunas"
+						style="float:right" icon="ui-icon-calculator" />
+					<p:columnToggler datasource="listProd" trigger="toggler" />
+					
+				</f:facet>
 
 				<p:ajax event="rowEdit" listener="#{produtoMbean.alterar}" />
 				<p:ajax event="rowEditCancel"
 					listener="#{produtoMbean.cancelarEdicao}" />
 
-				<p:column headerText="Id">
+				<p:column headerText="Id" filterBy="#{prod.id}" sortBy="#{prod.id}" filterMatchMode="startsWith">
 					<h:outputText value="#{prod.id}" />
 				</p:column>
 
-				<p:column headerText="Descricao">
+				<p:column headerText="Descricao" filterBy="#{prod.descricao}" 
+									 sortBy="#{prod.descricao}" filterMatchMode="startsWith">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{prod.descricao}" />
@@ -38,14 +55,15 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column headerText="Categoria">
+				<p:column headerText="Categoria" filterBy="prod.categoriaVO.descricao" 
+									 sortBy="prod.categoriaVO.descricao" filterMatchMode="startsWith">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{prod.categoriaVO.descricao}" />
 						</f:facet>
 						<f:facet name="input">
-							<p:selectOneMenu id="categoria"
-								value="#{prod.categoriaVO.id}" style="width:125px">
+							<p:selectOneMenu id="categoria" value="#{prod.categoriaVO.id}"
+								style="width:125px">
 								<f:selectItem itemLabel="Selecione" itemValue="0" />
 								<f:selectItems value="#{produtoMbean.listaCategoriaVO}"
 									var="categ" itemLabel="#{categ.descricao}"
@@ -77,7 +95,8 @@
 				</p:column>
 
 				<p:column headerText="Alterar">
-					<p:rowEditor />
+					<p:rowEditor editTitle="Editar Produto"
+						cancelTitle="Cancelar Edição" />
 				</p:column>
 
 			</p:dataTable>

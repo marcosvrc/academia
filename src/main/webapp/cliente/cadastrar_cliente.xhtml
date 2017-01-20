@@ -5,44 +5,47 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:decorate template="/index.xhtml">
-	
-		<ui:define name="centro">
-	
-			<h:form>
-				<p:messages id="messages" showDetail="true" autoUpdate="true"
-					closable="true" />
-	
-				<p:fieldset legend="Cadastrar Cliente" style="margin-bottom:20px">
-	
-					<p:panelGrid columns="2">
-						<p:outputLabel value="Nome:"/>
-						<p:inputText value="#{clienteMbean.cliente.nome}" />
-		
-						<p:outputLabel value="Cpf:"/>
-						<p:inputMask value="#{clienteMbean.cliente.cpf}"
-							mask="999.999.999-99" />
-		
-						<p:outputLabel value="Data de nascimento:" />
-						<p:calendar value="#{clienteMbean.cliente.dataNascimento}" pattern="dd-MM-yyyy" mask="true"/>
-		
-						<p:outputLabel value="Email:"/>
-						<p:inputText value="#{clienteMbean.cliente.email}" />
-						
-						<p:outputLabel value="Tem Desconto?:"/>
-						<p:inputSwitch value="#{clienteMbean.cliente.temDesconto}" onLabel="Sim" offLabel="Não"/>
-					</p:panelGrid>
-				
-				</p:fieldset>
-	
-				<p:separator/>
-	
-				<p:commandButton value="Salvar" action="#{clienteMbean.salvar}"
-					update="messages" />
-	
-			</h:form>
-	
-		</ui:define>
-	</ui:decorate>
+<ui:decorate template="/index_completo.xhtml">
+
+	<ui:define name="centro">
+
+		<h:form>
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+
+			<p:fieldset legend="Cadastrar Cliente" style="margin-bottom:20px">
+
+				<p:panelGrid columns="2" >
+					<p:outputLabel value="Nome:" />
+					<p:inputText value="#{clienteMbean.cliente.nome}" />
+
+					<p:outputLabel value="Cpf:" />
+					<p:inputMask value="#{clienteMbean.cliente.cpf}"
+						mask="999.999.999-99" />
+
+					<p:outputLabel value="Data de nascimento:" />
+					<p:calendar value="#{clienteMbean.cliente.dataNascimento}"
+						pattern="dd-MM-yyyy" mask="true" />
+
+					<p:outputLabel value="Email:" />
+					<p:inputText value="#{clienteMbean.cliente.email}" />
+
+					<p:outputLabel value="Tem Desconto?:" />
+					<p:inputSwitch value="#{clienteMbean.cliente.temDesconto}"
+						onLabel="Sim" offLabel="Não" 
+						style="margin-bottom:10px" cellpadding="5"/>
+				</p:panelGrid>
+
+			</p:fieldset>
+
+			<p:separator />
+
+			<p:commandButton value="Salvar" action="#{clienteMbean.salvar}"
+				update="messages" />
+
+		</h:form>
+
+	</ui:define>
+</ui:decorate>
 
 </html>

@@ -14,8 +14,7 @@
 <h:body>
 	<p:layout fullPage="true">
 
-		<p:layoutUnit position="north" size="100"  header="Top"
-			resizable="true" closable="true" collapsible="true">
+		<p:layoutUnit position="north" size="200"  resizable="true">
 			<h:form>
 			<p:menubar>
 				<p:submenu label="Cliente">
@@ -45,6 +44,42 @@
 			</p:menubar>
 		</h:form>
 		</p:layoutUnit>
+		
+		<p:layoutUnit position="west" size="250">
+
+				<h:form>
+					<p:panelMenu>
+						<p:submenu label="Cliente">
+							<p:menuitem value="Cadastrar" action="#{clienteMbean.chamarTelaCadastro}"
+								icon="ui-icon-disk" />
+							<p:menuitem value="Listar Todos" action="#{clienteMbean.chamarTelaListarTodosClientes}"
+								icon="ui-icon-arrowrefresh-1-w" />
+						</p:submenu>
+
+						<p:submenu label="Categoria">
+							<p:menuitem value="Cadastrar" action="#{categoriaMbean.chamarTelaCadastro}"
+								icon="ui-icon-disk" />
+							<p:menuitem value="Listar Todos" action="#{categoriaMbean.chamarTelaListarTodasCategorias}"
+								icon="ui-icon-arrowrefresh-1-w" />
+						</p:submenu>
+
+						<p:submenu label="Produto">
+							<p:menuitem value="Cadastrar" action="#{produtoMbean.chamarTelaCadastro}"
+								icon="ui-icon-disk" />
+							<p:menuitem value="Listar Todos" action="#{produtoMbean.chamarTelaListarTodos}"
+								icon="ui-icon-arrowrefresh-1-w" />
+						</p:submenu>
+
+						<p:submenu label="Pedido">
+							<p:menuitem value="Fazer Pedido"
+								actionListener="#{menuView.save}" icon="ui-icon-disk" />
+							<p:menuitem value="Atualizar" actionListener="#{menuView.update}"
+								icon="ui-icon-arrowrefresh-1-w" />
+						</p:submenu>
+
+					</p:panelMenu>
+				</h:form>
+			</p:layoutUnit>
 
 		<p:layoutUnit position="south" size="100" header="Bottom"
 			resizable="true" closable="true" collapsible="true">
